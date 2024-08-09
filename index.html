@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Carte Interactive</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    #map {
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    // Initialisation de la carte
+    var map = L.map('map', {
+      crs: L.CRS.Simple,
+      minZoom: -2,
+      maxZoom: 1, // Ajustez selon vos besoins
+      zoomControl: false // Optionnel, si vous ne voulez pas de contrôle de zoom
+    });
+
+    // Taille de l'image
+    var w = 4000, h = 3000;
+
+    // Définition des coins de l'image
+    var bounds = [[0, 0], [h, w]];
+    var image = L.imageOverlay('ma-carte.png', bounds).addTo(map);
+
+    // Centrage de la carte
+    map.fitBounds(bounds);
+
+    // Ajouter des points ou des marqueurs
+    L.marker([h / 4, w / 2]).addTo(map)
+      .bindPopup("<b>Ceci est un point!</b>")
+
+
+    // Limiter le défilement à la taille de l'image
+    map.on('load', function() {
+      map.setMaxBounds(bounds);
+    });
+
+    // Optionnel : ajouter un contrôle de zoom
+    L.control.zoom({
+      position: 'topright'
+    }).addTo(map);
+  </script>
+</body>
+</html>
