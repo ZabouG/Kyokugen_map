@@ -14,6 +14,7 @@
     #map {
       height: 100%;
       width: 100%;
+      background-color: #90d1ff; /* Remplacez cette couleur par celle que vous souhaitez */
     }
   </style>
 </head>
@@ -25,7 +26,7 @@
     // Initialisation de la carte
     var map = L.map('map', {
       crs: L.CRS.Simple,
-      minZoom: -2,
+      minZoom: -3,
       maxZoom: 1, // Ajustez selon vos besoins
       zoomControl: false // Optionnel, si vous ne voulez pas de contrôle de zoom
     });
@@ -41,9 +42,8 @@
     map.fitBounds(bounds);
 
     // Ajouter des points ou des marqueurs
-    L.marker([h / 4, w / 2]).addTo(map)
-      .bindPopup("<b>Ceci est un point!</b>")
-
+    L.marker([2200, 3400]).addTo(map)
+      .bindPopup("<b>Ceci est un point!</b>");
 
     // Limiter le défilement à la taille de l'image
     map.on('load', function() {
