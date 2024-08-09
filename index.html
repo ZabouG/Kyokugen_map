@@ -43,7 +43,19 @@
 
     // Ajouter des points ou des marqueurs
     L.marker([2200, 3400]).addTo(map)
-      .bindPopup("<b>Ceci est un point!</b>");
+      .bindPopup("<b>???</b>");
+
+    L.marker([1000, 3100]).addTo(map)
+    .bindPopup("<b>Kyokugen</b><p> La capital</p>");
+
+    L.marker([500, 1100]).addTo(map)
+    .bindPopup("<b>Alaria</b>");
+
+    L.marker([2100, 1600]).addTo(map)
+    .bindPopup("<b>Riverdell</b>");
+
+    L.marker([2600, 2600]).addTo(map)
+    .bindPopup("<b>Prison</b>");
 
     // Limiter le défilement à la taille de l'image
     map.on('load', function() {
