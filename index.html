@@ -40,15 +40,15 @@
     <h4>Filtrer les points</h4>
     <label>
       <input type="checkbox" class="filter" value="ville" checked>
-      <img src="icon/villePing.png" alt="Ville" width="20" height="20"> Villes
+      Villes
     </label><br>
     <label>
       <input type="checkbox" class="filter" value="capital" checked>
-      <img src="icon/capitalPing.png" alt="Capital" width="20" height="20"> Capitales
+       Capitales
     </label><br>
     <label>
       <input type="checkbox" class="filter" value="prison" checked>
-      <img src="icon/prisonPing.png" alt="Prison" width="20" height="20"> Prisons
+       Prisons
     </label><br>
   </div>
   <div id="map"></div>
@@ -85,10 +85,10 @@
     };
 
     // Ajouter des points avec des tags
-    L.marker([1000, 3000],  { icon: CapitalIcon }).bindPopup("<b>Kyokugen</b><p>à remplir</p>").addTo(markers.capital);
-    L.marker([500, 1000],  { icon: VilleIcon }).bindPopup("<b>Alaria</b><p>à remplir</p>").addTo(markers.ville);
-    L.marker([2200, 1650],  { icon: VilleIcon }).bindPopup("<b>Riverdell</b><p>à remplir</p>").addTo(markers.ville);
-    L.marker([2650, 2600],  { icon: PrisonIcon }).bindPopup("<b>Prison</b><p>à remplir</p>").addTo(markers.prison);
+    L.marker([1000, 3000]).bindPopup("<b>Kyokugen</b><p>à remplir</p>").addTo(markers.capital);
+    L.marker([450, 1000]).bindPopup("<b>Alaria</b><p>à remplir</p>").addTo(markers.ville);
+    L.marker([2150, 1650]).bindPopup("<b>Riverdell</b><p>à remplir</p>").addTo(markers.ville);
+    L.marker([2600, 2630]).bindPopup("<b>Prison</b><p>à remplir</p>").addTo(markers.prison);
 
     // Ajouter tous les groupes à la carte au départ
     markers.ville.addTo(map);
