@@ -106,7 +106,7 @@
 
     //Marqueur de port
     L.marker([1125, 2800], { icon: PortIcon }).bindPopup("<b>Port</b><p>à remplir</p>").addTo(markers.port);
-    L.marker([1125, 2800], { icon: PortIcon }).bindPopup("<b>Port</b><p>à remplir</p>").addTo(markers.port);
+    L.marker([650, 1150], { icon: PortIcon }).bindPopup("<b>Port</b><p>à remplir</p>").addTo(markers.port);
 
     // Ajouter tous les groupes principaux à la carte
     markers.ville.addTo(map);
@@ -124,6 +124,8 @@
         }
       });
     });
+
+    //fix
 
     // Afficher les hôpitaux et restaurants en fonction du zoom
     map.on('zoomend', function() {
