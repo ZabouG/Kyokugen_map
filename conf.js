@@ -1,5 +1,5 @@
 var CapitalIcon = L.icon({
-    iconUrl: 'icon/capitalPing.png',
+    iconUrl: 'icon/capital.png',
     iconSize: [30, 30], // Taille de l'icône
     iconAnchor: [10, 20], // Point d'ancrage de l'icône
     popupAnchor: [6, -15], // Point d'ancrage du popup
@@ -7,14 +7,14 @@ var CapitalIcon = L.icon({
   });
 
   var VilleIcon = L.icon({
-    iconUrl: 'icon/villePing.png',
+    iconUrl: 'icon/ville.png',
     iconSize: [30, 30 ], // Taille de l'icône
     iconAnchor: [10, 20], // Point d'ancrage de l'icône
     popupAnchor: [6, -15], // Point d'ancrage du popup
   });
 
   var PrisonIcon = L.icon({
-    iconUrl: 'icon/prisonPing.png',
+    iconUrl: 'icon/prison.png',
     iconSize: [30, 30 ], // Taille de l'icône
     iconAnchor: [10, 20], // Point d'ancrage de l'icône
     popupAnchor: [6, -15], // Point d'ancrage du popup
