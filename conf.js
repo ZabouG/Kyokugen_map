@@ -26,3 +26,24 @@ var CapitalIcon = L.icon({
     iconAnchor: [10, 20], // Point d'ancrage de l'icône
     popupAnchor: [6, -15], // Point d'ancrage du popup
   });
+
+  var HopitalIcon = L.icon({
+    iconUrl: 'icon/hopital.png',
+    iconSize: [30, 30 ], // Taille de l'icône
+    iconAnchor: [10, 20], // Point d'ancrage de l'icône
+    popupAnchor: [6, -15], // Point d'ancrage du popup
+  });
+
+  var RestaurantIcon = L.icon({
+    iconUrl: 'icon/restaurant.png',
+    iconSize: [30, 30 ], // Taille de l'icône
+    iconAnchor: [10, 20], // Point d'ancrage de l'icône
+    popupAnchor: [6, -15], // Point d'ancrage du popup
+  });
+
+  var PortIcon = L.icon({
+    iconUrl: 'icon/port.png',
+    iconSize: [30, 30 ], // Taille de l'icône
+    iconAnchor: [10, 20], // Point d'ancrage de l'icône
+    popupAnchor: [6, -15], // Point d'ancrage du popup
+  });
