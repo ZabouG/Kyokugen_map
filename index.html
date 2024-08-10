@@ -83,7 +83,7 @@
     map.fitBounds(bounds);
 
     // Bloquer le défilement en dehors des bornes de la carte
-    map.setMaxBounds(bounds);
+    map.setMaxBounds([[0, 0], [h+100, w+100]]);
     
     // Créer des groupes pour chaque type de point
     var markers = {
