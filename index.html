@@ -14,21 +14,38 @@
     #map {
       height: 100%;
       width: 100%;
-      background-color: #90d1ff; /* Remplacez cette couleur par celle que vous souhaitez */
+      background-color: #90d1ff; /* Couleur de fond de la carte */
+    }
+    #menu {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: white;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
     }
   </style>
 </head>
 <body>
+  <div id="menu">
+    <h4>Filtrer les points</h4>
+    <label><input type="checkbox" class="filter" value="ville" checked> Villes</label><br>
+    <label><input type="checkbox" class="filter" value="capital" checked> Capitales</label><br>
+    <label><input type="checkbox" class="filter" value="prison" checked> Prisons</label><br>
+  </div>
   <div id="map"></div>
 
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="conf.js"></script>
   <script>
     // Initialisation de la carte
     var map = L.map('map', {
       crs: L.CRS.Simple,
       minZoom: -3,
-      maxZoom: 1, // Ajustez selon vos besoins
-      zoomControl: false // Optionnel, si vous ne voulez pas de contrôle de zoom
+      maxZoom: 1,
+      zoomControl: false
     });
 
     // Taille de l'image
@@ -41,28 +58,47 @@
     // Centrage de la carte
     map.fitBounds(bounds);
 
-    // Ajouter des points ou des marqueurs
-    L.marker([2200, 3400]).addTo(map)
-      .bindPopup("<b>???</b>");
+    // Bloquer le défilement en dehors des bornes de la carte
+    map.setMaxBounds(bounds);
 
-    L.marker([1000, 3100]).addTo(map)
-    .bindPopup("<b>Kyokugen</b><p> La capital</p>");
+    // Créer des groupes pour chaque type de point
+    var markers = {
+      ville: L.layerGroup(),
+      capital: L.layerGroup(),
+      prison: L.layerGroup()
+    };
 
-    L.marker([500, 1100]).addTo(map)
-    .bindPopup("<b>Alaria</b>");
+    // Ajouter des points avec des tags
+    L.marker([2200, 3400]).bindPopup("<b>???</b><p>à remplir</p>").addTo(markers.ville);
+    L.marker([1000, 3100]).bindPopup("<b>Kyokugen</b><p>à remplir</p>").addTo(markers.capital);
+    L.marker([500, 1100]).bindPopup("<b>Alaria</b><p>à remplir</p>").addTo(markers.ville);
+    L.marker([2100, 1600]).bindPopup("<b>Riverdell</b><p>à remplir</p>").addTo(markers.ville);
+    L.marker([2600, 2600]).bindPopup("<b>Prison</b><p>à remplir</p>").addTo(markers.prison);
 
-    L.marker([2100, 1600]).addTo(map)
-    .bindPopup("<b>Riverdell</b>");
+    // Ajouter tous les groupes à la carte au départ
+    markers.ville.addTo(map);
+    markers.capital.addTo(map);
+    markers.prison.addTo(map);
 
-    L.marker([2600, 2600]).addTo(map)
-    .bindPopup("<b>Prison</b>");
+    // Gestion du filtre
+    document.querySelectorAll('.filter').forEach(function(input) {
+      input.addEventListener('change', function() {
+        var checked = this.checked;
+        var value = this.value;
+        if (checked) {
+          markers[value].addTo(map);
+        } else {
+          map.removeLayer(markers[value]);
+        }
+      });
+    });
 
     // Limiter le défilement à la taille de l'image
     map.on('load', function() {
       map.setMaxBounds(bounds);
     });
 
-    // Optionnel : ajouter un contrôle de zoom
+    // Ajouter un contrôle de zoom
     L.control.zoom({
       position: 'topright'
     }).addTo(map);
