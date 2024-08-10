@@ -26,14 +26,30 @@
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
       z-index: 1000;
     }
+    .custom-icon {
+      opacity: 0.8; /* Ajuste l'opacité ici (0.0 à 1.0) */
+    }
+    #menu img {
+      vertical-align: middle; /* Alignement des icônes avec le texte */
+      margin-right: 5px; /* Espacement entre l'icône et le texte */
+    }
   </style>
 </head>
 <body>
   <div id="menu">
     <h4>Filtrer les points</h4>
-    <label><input type="checkbox" class="filter" value="ville" checked> Villes</label><br>
-    <label><input type="checkbox" class="filter" value="capital" checked> Capitales</label><br>
-    <label><input type="checkbox" class="filter" value="prison" checked> Prisons</label><br>
+    <label>
+      <input type="checkbox" class="filter" value="ville" checked>
+      <img src="icon/villePing.png" alt="Ville" width="20" height="20"> Villes
+    </label><br>
+    <label>
+      <input type="checkbox" class="filter" value="capital" checked>
+      <img src="icon/capitalPing.png" alt="Capital" width="20" height="20"> Capitales
+    </label><br>
+    <label>
+      <input type="checkbox" class="filter" value="prison" checked>
+      <img src="icon/prisonPing.png" alt="Prison" width="20" height="20"> Prisons
+    </label><br>
   </div>
   <div id="map"></div>
 
@@ -53,27 +69,26 @@
 
     // Définition des coins de l'image
     var bounds = [[0, 0], [h, w]];
-    var image = L.imageOverlay('ma-carte.png', bounds).addTo(map);
+    var image = L.imageOverlay('Kyokugen (détail).jpg', bounds).addTo(map);
 
     // Centrage de la carte
     map.fitBounds(bounds);
 
     // Bloquer le défilement en dehors des bornes de la carte
     map.setMaxBounds(bounds);
-
+    
     // Créer des groupes pour chaque type de point
     var markers = {
       ville: L.layerGroup(),
       capital: L.layerGroup(),
-      prison: L.layerGroup()
+      prison: L.layerGroup(),
     };
 
     // Ajouter des points avec des tags
-    L.marker([2200, 3400]).bindPopup("<b>???</b><p>à remplir</p>").addTo(markers.ville);
-    L.marker([1000, 3100]).bindPopup("<b>Kyokugen</b><p>à remplir</p>").addTo(markers.capital);
-    L.marker([500, 1100]).bindPopup("<b>Alaria</b><p>à remplir</p>").addTo(markers.ville);
-    L.marker([2100, 1600]).bindPopup("<b>Riverdell</b><p>à remplir</p>").addTo(markers.ville);
-    L.marker([2600, 2600]).bindPopup("<b>Prison</b><p>à remplir</p>").addTo(markers.prison);
+    L.marker([1000, 3000],  { icon: CapitalIcon }).bindPopup("<b>Kyokugen</b><p>à remplir</p>").addTo(markers.capital);
+    L.marker([500, 1000],  { icon: VilleIcon }).bindPopup("<b>Alaria</b><p>à remplir</p>").addTo(markers.ville);
+    L.marker([2200, 1650],  { icon: VilleIcon }).bindPopup("<b>Riverdell</b><p>à remplir</p>").addTo(markers.ville);
+    L.marker([2650, 2600],  { icon: PrisonIcon }).bindPopup("<b>Prison</b><p>à remplir</p>").addTo(markers.prison);
 
     // Ajouter tous les groupes à la carte au départ
     markers.ville.addTo(map);
