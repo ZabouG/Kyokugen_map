@@ -40,15 +40,15 @@
     <h4>Filtrer les points</h4>
     <label>
       <input type="checkbox" class="filter" value="ville" checked>
-      Villes
+      <img src="icon/capitalPing.png" alt="" width="20px">Villes
     </label><br>
     <label>
       <input type="checkbox" class="filter" value="capital" checked>
-       Capitales
+      <img src="icon/villePing.png" alt="" width="20px">Capitales
     </label><br>
     <label>
       <input type="checkbox" class="filter" value="prison" checked>
-       Prisons
+      <img src="icon/prisonPing.png" alt="" width="20px">Prisons
     </label><br>
   </div>
   <div id="map"></div>
@@ -64,12 +64,14 @@
       zoomControl: false
     });
 
-    // Taille de l'image
+    // Taille de l'image (assurez-vous que ces dimensions correspondent exactement à celles de votre image)
     var w = 4000, h = 3000;
 
     // Définition des coins de l'image
     var bounds = [[0, 0], [h, w]];
-    var image = L.imageOverlay('Kyokugen (détail).jpg', bounds).addTo(map);
+    var image = L.imageOverlay('Kyokugen (détail).jpg', bounds, {
+      noWrap: true // Évite la répétition de l'image
+    }).addTo(map);
 
     // Centrage de la carte
     map.fitBounds(bounds);
@@ -85,10 +87,10 @@
     };
 
     // Ajouter des points avec des tags
-    L.marker([1000, 3000]).bindPopup("<b>Kyokugen</b><p>à remplir</p>").addTo(markers.capital);
-    L.marker([450, 1000]).bindPopup("<b>Alaria</b><p>à remplir</p>").addTo(markers.ville);
-    L.marker([2150, 1650]).bindPopup("<b>Riverdell</b><p>à remplir</p>").addTo(markers.ville);
-    L.marker([2600, 2630]).bindPopup("<b>Prison</b><p>à remplir</p>").addTo(markers.prison);
+    L.marker([1000, 3000],  { icon: CapitalIcon }).bindPopup("<b>Kyokugen</b><p>à remplir</p>").addTo(markers.capital);
+    L.marker([500, 1000],  { icon: VilleIcon }).bindPopup("<b>Alaria</b><p>à remplir</p>").addTo(markers.ville);
+    L.marker([2250, 1600],  { icon: VilleIcon }).bindPopup("<b>Riverdell</b><p>à remplir</p>").addTo(markers.ville);
+    L.marker([2600, 2600],  { icon: PrisonIcon }).bindPopup("<b>Prison</b><p>à remplir</p>").addTo(markers.prison);
 
     // Ajouter tous les groupes à la carte au départ
     markers.ville.addTo(map);
