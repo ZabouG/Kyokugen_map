@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
   <style>
+    /* fix */
     html, body {
       height: 100%;
       margin: 0;
@@ -99,7 +100,6 @@
     L.marker([2600, 2600],  { icon: PrisonIcon }).bindPopup("<b>Prison</b><p>à remplir</p>").addTo(markers.prison);
     L.marker([2155, 1006],  { icon: WarningIcon }).bindPopup("<b>Volcan</b><p>à remplir</p>").addTo(markers.danger);
     L.marker([555, 3600],  { icon: WarningIcon }).bindPopup("<b>Forêt</b><p>à remplir</p>").addTo(markers.danger);
-
 
     // Ajouter tous les groupes à la carte au départ
     markers.ville.addTo(map);
