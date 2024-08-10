@@ -10,6 +10,7 @@
       height: 100%;
       margin: 0;
       padding: 0;
+      font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
     }
     #map {
       height: 100%;
@@ -27,7 +28,7 @@
       z-index: 1000;
     }
     .custom-icon {
-      opacity: 0.8; /* Ajuste l'opacité ici (0.0 à 1.0) */
+      opacity: 1; /* Ajuste l'opacité ici (0.0 à 1.0) */
     }
     #menu img {
       vertical-align: middle; /* Alignement des icônes avec le texte */
@@ -39,16 +40,20 @@
   <div id="menu">
     <h4>Filtrer les points</h4>
     <label>
-      <input type="checkbox" class="filter" value="ville" checked>
-      <img src="icon/capitalPing.png" alt="" width="20px">Villes
+      <input type="checkbox" class="filter" value="capital" checked>
+      <img src="icon/capital.png" alt="" width="20px">Capital
     </label><br>
     <label>
-      <input type="checkbox" class="filter" value="capital" checked>
-      <img src="icon/villePing.png" alt="" width="20px">Capitales
+      <input type="checkbox" class="filter" value="ville" checked>
+      <img src="icon/ville.png" alt="" width="20px">Villes
     </label><br>
     <label>
       <input type="checkbox" class="filter" value="prison" checked>
-      <img src="icon/prisonPing.png" alt="" width="20px">Prisons
+      <img src="icon/prison.png" alt="" width="20px">Prisons
+    </label><br>
+    <label>
+      <input type="checkbox" class="filter" value="danger" checked>
+      <img src="icon/avertissement.png" alt="" width="20px">Zone de danger
     </label><br>
   </div>
   <div id="map"></div>
@@ -59,7 +64,7 @@
     // Initialisation de la carte
     var map = L.map('map', {
       crs: L.CRS.Simple,
-      minZoom: -3,
+      minZoom: -2,
       maxZoom: 1,
       zoomControl: false
     });
@@ -84,6 +89,7 @@
       ville: L.layerGroup(),
       capital: L.layerGroup(),
       prison: L.layerGroup(),
+      danger: L.layerGroup(),
     };
 
     // Ajouter des points avec des tags
@@ -91,11 +97,15 @@
     L.marker([500, 1000],  { icon: VilleIcon }).bindPopup("<b>Alaria</b><p>à remplir</p>").addTo(markers.ville);
     L.marker([2250, 1600],  { icon: VilleIcon }).bindPopup("<b>Riverdell</b><p>à remplir</p>").addTo(markers.ville);
     L.marker([2600, 2600],  { icon: PrisonIcon }).bindPopup("<b>Prison</b><p>à remplir</p>").addTo(markers.prison);
+    L.marker([2155, 1006],  { icon: WarningIcon }).bindPopup("<b>Volcan</b><p>à remplir</p>").addTo(markers.danger);
+    L.marker([555, 3600],  { icon: WarningIcon }).bindPopup("<b>Forêt</b><p>à remplir</p>").addTo(markers.danger);
+
 
     // Ajouter tous les groupes à la carte au départ
     markers.ville.addTo(map);
     markers.capital.addTo(map);
     markers.prison.addTo(map);
+    markers.danger.addTo(map);
 
     // Gestion du filtre
     document.querySelectorAll('.filter').forEach(function(input) {
