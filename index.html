@@ -84,29 +84,33 @@
       danger: L.layerGroup(),
       hopital: L.layerGroup(),  // Groupe pour les hôpitaux
       restaurant: L.layerGroup(),
-      port: L.layerGroup()  // Groupe pour les restaurants
+      port: L.layerGroup(),  // Groupe pour les restaurants
+      agence: L.layerGroup() 
     };
 
     // Ajouter des marqueurs aux groupes appropriés
-    L.marker([1000, 3000], { icon: CapitalIcon }).bindPopup("<b>Kyokugen</b><p>à remplir</p>").addTo(markers.capital);
-    L.marker([500, 1000], { icon: VilleIcon }).bindPopup("<b>Alaria</b><p>à remplir</p>").addTo(markers.ville);
-    L.marker([2250, 1600], { icon: VilleIcon }).bindPopup("<b>Riverdell</b><p>à remplir</p>").addTo(markers.ville);
-    L.marker([2600, 2600], { icon: PrisonIcon }).bindPopup("<b>Prison</b><p>à remplir</p>").addTo(markers.prison);
-    L.marker([2155, 1006], { icon: WarningIcon }).bindPopup("<b>Volcan</b><p>à remplir</p>").addTo(markers.danger);
-    L.marker([555, 3600], { icon: WarningIcon }).bindPopup("<b>Forêt</b><p>à remplir</p>").addTo(markers.danger);
+    L.marker([1000, 3000], { icon: CapitalIcon }).bindPopup("<b>Kyokugen</b><p>Capital de Kyokugen</p>").addTo(markers.capital);
+    L.marker([500, 1000], { icon: VilleIcon }).bindPopup("<b>Alaria</b><p>Ville du déssert</p>").addTo(markers.ville);
+    L.marker([2250, 1600], { icon: VilleIcon }).bindPopup("<b>Riverdell</b><p>Capital touristique</p>").addTo(markers.ville);
+    L.marker([2600, 2600], { icon: PrisonIcon }).bindPopup("<b>Prison</b>").addTo(markers.prison);
+    L.marker([2155, 1006], { icon: WarningIcon }).bindPopup("<b>Volcan</b><p>Zone a haut densité de monstre</p>").addTo(markers.danger);
+    L.marker([555, 3600], { icon: WarningIcon }).bindPopup("<b>Forêt</b><p>Zone a haut densité de monstre</p>").addTo(markers.danger);
 
     // Marqueurs d'hôpitaux
-    L.marker([870, 3190], { icon: HopitalIcon }).bindPopup("<b>Hôpital</b><p>à remplir</p>").addTo(markers.hopital);
-    L.marker([2125, 1685], { icon: HopitalIcon }).bindPopup("<b>Hôpital</b><p>à remplir</p>").addTo(markers.hopital);
-    L.marker([500, 1250], { icon: HopitalIcon }).bindPopup("<b>Hôpital</b><p>à remplir</p>").addTo(markers.hopital);
-    L.marker([2150, 3400], { icon: HopitalIcon }).bindPopup("<b>Hôpital</b><p>à remplir</p>").addTo(markers.hopital);
+    L.marker([870, 3190], { icon: HopitalIcon }).bindPopup("<b>Hôpital</b><p>Hôpital Maris-Joie</p>").addTo(markers.hopital);
+    L.marker([2125, 1685], { icon: HopitalIcon }).bindPopup("<b>Hôpital</b><p>Hôpital de New-Horizon</p>").addTo(markers.hopital);
+    L.marker([500, 1250], { icon: HopitalIcon }).bindPopup("<b>Hôpital</b><p>Hôpital Golden bell</p>").addTo(markers.hopital);
+    L.marker([2150, 3400], { icon: HopitalIcon }).bindPopup("<b>Hôpital</b><p>Hôpital militaire</p>").addTo(markers.hopital);
 
     // Marqueur de restaurant
-    L.marker([760, 3190], { icon: RestaurantIcon }).bindPopup("<b>Restaurant 1</b><p>à remplir</p>").addTo(markers.restaurant);
+    L.marker([760, 3190], { icon: RestaurantIcon }).bindPopup("<b>Restaurant</b><p>Restaurant Italien du nom de : Pizza Rapido</p>").addTo(markers.restaurant);
 
     //Marqueur de port
-    L.marker([1125, 2800], { icon: PortIcon }).bindPopup("<b>Port</b><p>à remplir</p>").addTo(markers.port);
-    L.marker([650, 1150], { icon: PortIcon }).bindPopup("<b>Port</b><p>à remplir</p>").addTo(markers.port);
+    L.marker([1125, 2800], { icon: PortIcon }).bindPopup("<b>Port</b><p>Port Ouest</p>").addTo(markers.port);
+    L.marker([650, 1000], { icon: PortIcon }).bindPopup("<b>Port</b><p>Port Est</p>").addTo(markers.port);
+
+    //Marqueur agence
+    L.marker([400, 805], { icon: AgenceIcon }).bindPopup("<b>Agence a Tora</b><p>Chef : Tora</p>").addTo(markers.agence);
 
     // Ajouter tous les groupes principaux à la carte
     markers.ville.addTo(map);
@@ -125,22 +129,25 @@
       });
     });
 
-    //fix
-
     // Afficher les hôpitaux et restaurants en fonction du zoom
     map.on('zoomend', function() {
-
       
       if (map.getZoom() >= -2) {
         map.addLayer(markers.port);
+        map.addLayer(markers.agence);
       } else {
         map.removeLayer(markers.port);
+        map.removeLayer(markers.agence);
       }
 
       if (map.getZoom() >= -1) {
         map.addLayer(markers.hopital);
+
+
       } else {
         map.removeLayer(markers.hopital);
+
+
       }
       
       if (map.getZoom() >= 0) {
